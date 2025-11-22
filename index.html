@@ -1,31 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anjali | Github</title>
-    <style>
-        h1  {
-            color:black;
-            background-color:lightseagreen;
-            padding:10px;
-        }
-        p {
-            font:size 20px;
-            colour:black;
-            background-color:lightslategrey;
-            padding:10px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sharanbasva University — Welcome</title>
+  <style>
+    :root{
+      --bg:#f7fbfc;
+      --card:#ffffff;
+      --accent:#2ea3a3;
+      --text:#0f172a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    /* Navbar */
+    .navbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 20px;
+      background:var(--card);
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+      position:sticky;
+      top:0;
+    }
+    .brand{
+      color:var(--accent);
+      font-weight:800;
+      text-decoration:none;
+      font-size:1.05rem;
+    }
+    .nav-links{
+      display:flex;
+      gap:10px;
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+    .nav-links a{
+      text-decoration:none;
+      color:var(--text);
+      padding:8px 10px;
+      border-radius:8px;
+      font-weight:600;
+    }
+    .nav-links a:hover{ background:#eef9f9; }
+    .nav-links a.active{ background:var(--accent); color:#fff; }
+
+    /* Page content */
+    main{ max-width:1000px; margin:28px auto; padding:20px; text-align:center; }
+    .hero {
+      background:linear-gradient(90deg,#fff,#f7fffe);
+      padding:28px;
+      border-radius:12px;
+      box-shadow:0 8px 24px rgba(2,6,23,0.04);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+    }
+    h1{ margin:0; font-size:1.9rem; color:#0b3d36; }
+    p.lead{ margin:0; color:#54616a; max-width:760px; }
+
+    .hero-image{
+      width:100%;
+      max-width:760px;
+      height:auto;
+      border-radius:10px;
+      box-shadow:0 6px 20px rgba(2,6,23,0.08);
+      border:1px solid #e8f4f2;
+      object-fit:cover;
+    }
+
+    @media (max-width:640px){
+      .nav-links{ display:none; }
+      .nav-toggle{ display:inline-flex; border:0; background:transparent; font-size:1.25rem; cursor:pointer; }
+      .nav-links.show{ display:flex; flex-direction:column; gap:6px; margin-top:8px; }
+      .navbar{ flex-direction:column; align-items:flex-start; }
+      h1{ font-size:1.4rem; }
+    }
+  </style>
 </head>
 <body>
-    <h1 align="center">Welcome to Sharanbasva university</h1>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <img src="image copy.png" alt="" width="40%">
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi maiores impedit atque animi labore illum nesciunt dolor culpa, quae quibusdam earum a quos officia asperiores perferendis, accusantium, facere dolorem magni.</p>
+  <header class="navbar">
+    <a class="brand" href="index.html">Anjali • Github</a>
 
-    
+    <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" style="display:none">☰</button>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Welcome to Sharanbasva University</h1>
+      <p class="lead">Explore our campus, courses and community. Below is an image of Sharanbasva University — place an image file named "sharanbasva.jpg" in the same folder.</p>
+
+      <!-- Replace "sharanbasva.jpg" with your actual image filename (e.g., "image copy.png") -->
+      <img src="image copy.png" alt="Sharanbasva University campus" class="hero-image">
+
+      <p class="lead small">Sharanbasva University — learning, innovation and community.</p>
+    </section>
+  </main>
+
+  <script>
+    // small mobile toggle: shows nav when screen is narrow
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    function updateToggle() {
+      const show = window.innerWidth <= 640;
+      toggle.style.display = show ? 'inline-flex' : 'none';
+      if(!show) links.classList.remove('show');
+    }
+    toggle.addEventListener && toggle.addEventListener('click', () => links.classList.toggle('show'));
+    window.addEventListener('resize', updateToggle);
+    updateToggle();
+  </script>
 </body>
 </html>
